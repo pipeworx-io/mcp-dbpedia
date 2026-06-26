@@ -71,7 +71,7 @@ const tools: McpToolExport['tools'] = [
   },
   {
     name: 'abstract',
-    description: 'Convenience: fetch the prose abstract for a topic.',
+    description: 'Fetch a prose summary for a topic label (e.g. "Eiffel Tower") using Wikipedia\'s REST summary endpoint as fallback; returns title, extract text, and source URL.',
     inputSchema: {
       type: 'object',
       properties: {
@@ -141,6 +141,12 @@ async function callTool(name: string, args: Record<string, unknown>): Promise<un
       // for the prose text and only use DBpedia for the canonical entity URI.
       const label = reqStr(args, 'label', '"Eiffel Tower"').replace(/\s+/g, '_');
       const lang = (args.lang as string) ?? 'en';
+      // SSRF guard: `lang` is caller-supplied and interpolated into the host, so
+      // a value like "evil.com/" would point the fetch at evil.com. Wikipedia
+      // language codes are bare labels (en, zh-yue, …).
+      if (!/^[a-z0-9-]{1,32}$/i.test(lang)) {
+        throw new Error(`DBpedia: invalid lang "${lang}" — expected a language code like "en".`);
+      }
       const wikiRes = await fetch(
         `https://${lang}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(label)}`,
         { headers: { Accept: 'application/json', 'User-Agent': UA } },

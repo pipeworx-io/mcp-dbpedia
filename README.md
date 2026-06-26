@@ -2,7 +2,7 @@
 
 DBpedia MCP — SPARQL + Lookup over Wikipedia-derived structured data
 
-Part of [Pipeworx](https://pipeworx.io) — an MCP gateway connecting AI agents to 673+ live data sources.
+Part of [Pipeworx](https://pipeworx.io) — an MCP gateway connecting AI agents to 965+ live data sources.
 
 ## Tools
 
@@ -11,7 +11,7 @@ Part of [Pipeworx](https://pipeworx.io) — an MCP gateway connecting AI agents 
 | `lookup` | DBpedia Lookup search — find entities by label or alias. |
 | `sparql` | Execute a SPARQL query against the DBpedia public endpoint. |
 | `resource` | Fetch all triples about a DBpedia resource. |
-| `abstract` | Convenience: fetch the prose abstract for a topic. |
+| `abstract` | Fetch a prose summary for a topic label (e.g. "Eiffel Tower") using Wikipedia\'s REST summary endpoint as fallback; returns title, extract text, and source URL. |
 
 ## Quick Start
 
@@ -27,7 +27,7 @@ Add to your MCP client (Claude Desktop, Cursor, Windsurf, etc.):
 }
 ```
 
-Or connect to the full Pipeworx gateway for access to all 673+ data sources:
+Or connect to the full Pipeworx gateway for access to all 965+ data sources:
 
 ```json
 {
