@@ -1,6 +1,6 @@
 {
   "name": "@pipeworx/mcp-dbpedia",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "DBpedia MCP — SPARQL + Lookup over Wikipedia-derived structured data",
   "type": "module",
   "main": "src/index.ts",
@@ -26,7 +26,7 @@
     "@cloudflare/workers-types": "^4.20260405.1"
   },
   "pipeworx": {
-    "sourceHash": "v1-c1b41ed4be7e83a814bff8d473524d80067ec5bc285c951357d662a52c233742",
-    "sourceCommit": "839ab210d969ef7f822cd747ea516f6bb49e9231"
+    "sourceHash": "v1-e9a6c50454b84667d0e3efeeed2d277eafb34c5de635b5c2658bea690967caf6",
+    "sourceCommit": "56d3c46c09bb3078ffdbdbca992a93f406bcd382"
   }
 }
