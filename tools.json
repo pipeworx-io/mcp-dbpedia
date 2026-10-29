@@ -1,0 +1,82 @@
+[
+  {
+    "name": "lookup",
+    "description": "DBpedia Lookup search — find entities by label or alias.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "max_results": {
+          "type": "number",
+          "description": "1-100 (default 10)"
+        },
+        "type": {
+          "type": "string",
+          "description": "Restrict to a DBpedia type URI (e.g. Place, Person)"
+        }
+      },
+      "required": [
+        "query"
+      ]
+    }
+  },
+  {
+    "name": "sparql",
+    "description": "Execute a SPARQL query against the DBpedia public endpoint.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "SPARQL query text. Also accepts `sparql` as an alias — the wikidata_sparql_query tool uses that name for the same argument."
+        },
+        "sparql": {
+          "type": "string",
+          "description": "Alias for `query`."
+        },
+        "format": {
+          "type": "string",
+          "description": "json (default) | xml | csv | tsv"
+        }
+      }
+    }
+  },
+  {
+    "name": "resource",
+    "description": "Fetch all triples about a DBpedia resource.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "uri": {
+          "type": "string",
+          "description": "Full resource URI (e.g. \"http://dbpedia.org/resource/Albert_Einstein\") or label (e.g. \"Albert Einstein\")"
+        }
+      },
+      "required": [
+        "uri"
+      ]
+    }
+  },
+  {
+    "name": "abstract",
+    "description": "Fetch a prose summary for a topic label (e.g. \"Eiffel Tower\") using Wikipedia's REST summary endpoint as fallback; returns title, extract text, and source URL.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Topic label (e.g. \"Eiffel Tower\")"
+        },
+        "lang": {
+          "type": "string",
+          "description": "ISO 639-1 language code (default en)"
+        }
+      },
+      "required": [
+        "label"
+      ]
+    }
+  }
+]
